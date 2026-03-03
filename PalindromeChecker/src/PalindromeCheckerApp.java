@@ -11,25 +11,18 @@ public class PalindromeCheckerApp {
         @author: Jeyanth_S
         @version: v1.1
          */
-        Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
-        String text = sc.nextLine();
+        String text = "madam";
 
-        String reversed = "";
+        String cleaned = text.replaceAll("\\s+", "").toLowerCase();
 
-        // Reverse the string
-        for (int i = text.length() - 1; i >= 0; i--) {
-            reversed += text.charAt(i);
-        }
+        String reversed = new StringBuilder(cleaned).reverse().toString();
 
-        // Check palindrome
-        if (text.equals(reversed)) {
-            System.out.println("\"" + text + "\" is a Palindrome.");
+        if (cleaned.equals(reversed)) {
+            System.out.println(text + " is a Palindrome.");
         } else {
-            System.out.println("\"" + text + "\" is Not a Palindrome.");
+            System.out.println(text + " is NOT a Palindrome.");
         }
-        sc.close();
-
+        System.out.println("Program Ended.");
     }
 }
