@@ -3,13 +3,13 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
         /*
         *
-        * USE CASE 2:
+        * USE CASE 3:
         *
         *This program can now get a string from the user and checks whether the string is palindrome, and displays
         * the result
         *
         @author: Jeyanth_S
-        @version: v1.1
+        @version: v1.2
          */
 
         String text = "madam";
