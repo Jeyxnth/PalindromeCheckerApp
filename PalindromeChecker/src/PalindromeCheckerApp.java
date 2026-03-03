@@ -1,28 +1,46 @@
-import java.util.Scanner;
+
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         /*
         *
-        * USE CASE 3:
+        * USE CASE 4:
         *
-        *This program can now get a string from the user and checks whether the string is palindrome, and displays
+        *This program checks whether the string is palindrome based on character array, and displays
         * the result
         *
         @author: Jeyanth_S
-        @version: v1.2
+        @version: v1.4
          */
 
-        String text = "madam";
+        // Declare and initialize the input string.
+        String input = "radar";
 
-        String cleaned = text.replaceAll("\\s+", "").toLowerCase();
+        // Convert the string into a character array.
+        char[] chars = input.toCharArray();
 
-        String reversed = new StringBuilder(cleaned).reverse().toString();
+        // Initialize pointer at the beginning.
+        int start = 0;
 
-        if (cleaned.equals(reversed)) {
-            System.out.println(text + " is a Palindrome.");
-        } else {
-            System.out.println(text + " is NOT a Palindrome.");
+        // Initialize pointer at the end.
+        int end = chars.length - 1;
+
+        // Assume palindrome initially.
+        boolean isPalindrome = true;
+
+        // Continue comparison until pointers cross.
+        while (start < end) {
+
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
-        System.out.println("Program Ended.");
+
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+        git add PalindromeChecker/src/PalindromeCheckerApp.java
     }
 }
