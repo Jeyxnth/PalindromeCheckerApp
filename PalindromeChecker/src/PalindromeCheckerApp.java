@@ -11,6 +11,7 @@ public class PalindromeCheckerApp {
         @author: Jeyanth_S
         @version: v1.1
          */
+
         String text = "madam";
 
         String cleaned = text.replaceAll("\\s+", "").toLowerCase();
@@ -22,7 +23,6 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println(text + " is NOT a Palindrome.");
         }
-
         System.out.println("Program Ended.");
     }
 }
