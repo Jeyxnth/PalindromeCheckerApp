@@ -11,6 +11,7 @@ public class PalindromeCheckerApp {
         @author: Jeyanth_S
         @version: v1.4
          */
+
         // Declare and initialize the input string.
         String input = "radar";
 
@@ -40,5 +41,6 @@ public class PalindromeCheckerApp {
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
+
     }
 }
