@@ -1,36 +1,54 @@
 import java.util.Scanner;
-public class PalindromeCheckerApp {
+public class UseCase11PalindromeCheckerApp {
+    /**
+     * USE CASE:11
+     * This program can get an input from the user and check whether the string is a palindrome or not using
+     * Encapsulation.
+     *
+     * @Author: Jeyanth_S
+     * @Version: v1.11
+     */
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("=== Palindrome Checker App (UC10) ===");
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a string: ");
-        String str = input.nextLine();
+        String input = scanner.nextLine();
 
-        // Normalize string: remove spaces and convert to lowercase
-        String normalized = str.replaceAll("\\s+", "").toLowerCase();
+        // Create service object
+        PalindromeService service = new PalindromeService();
 
-        boolean isPalindrome = true;
+        // Call palindrome check
+        boolean result = service.checkPalindrome(input);
 
-        // Compare characters from both ends
-        for (int i = 0; i < normalized.length() / 2; i++) {
-
-            // Compare symmetric characters
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        // Display result
-        if (isPalindrome) {
-            System.out.println("The string is a PALINDROME (ignoring spaces and case).");
+        if (result) {
+            System.out.println("The string is a PALINDROME.");
         } else {
             System.out.println("The string is NOT a palindrome.");
         }
 
-        input.close();
+        scanner.close();
+    }
+}
+
+class PalindromeService {
+    public boolean checkPalindrome(String input) {
+
+        // Initialize pointers
+        int start = 0;
+        int end = input.length() - 1;
+
+        // Compare characters moving inward
+        while (start < end) {
+
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+
+            start++;
+            end--;
+        }
+
+        return true;
     }
 }
