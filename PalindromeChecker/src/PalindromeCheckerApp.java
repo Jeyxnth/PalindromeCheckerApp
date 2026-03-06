@@ -1,44 +1,40 @@
-
+import java.util.Stack;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         /*
         *
-        * USE CASE 4:
+        * USE CASE 5:
         *
-        *This program checks whether the string is palindrome based on character array, and displays
+        *This program checks whether the string is palindrome using stack and displays
         * the result
         *
         @author: Jeyanth_S
-        @version: v1.4
+        @version: v1.5
          */
 
-        // Declare and initialize the input string.
-        String input = "radar";
+        // Declare and initialize the input string
+        String input = "noon";
 
-        // Convert the string into a character array.
-        char[] chars = input.toCharArray();
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
 
-        // Initialize pointer at the beginning.
-        int start = 0;
+        // Push each character of the string into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
-        // Initialize pointer at the end.
-        int end = chars.length - 1;
-
-        // Assume palindrome initially.
+        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Continue comparison until pointers cross.
-        while (start < end) {
-
-            if (chars[start] != chars[end]) {
+        // Iterate again through original string
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
+        // Print result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
 
