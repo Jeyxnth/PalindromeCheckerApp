@@ -1,52 +1,99 @@
 import java.util.Scanner;
-public class UseCase11PalindromeCheckerApp {
-    /**
-     * USE CASE:11
-     * This program can get an input from the user and check whether the string is a palindrome or not using
-     * Encapsulation.
-     *
-     * @Author: Jeyanth_S
-     * @Version: v1.11
-     */
+import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
+
+/**
+ * USE CASE: 12
+ * This program can Dynamically choose what strategy to use to accomplish the task
+ *
+ * @Author: Jeyanth_S
+ * @Version: v1.12
+ */
+public class PalindromeCheckerApp {
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("=== Palindrome Checker (Strategy Pattern) ===");
         System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
-        // Create service object
-        PalindromeService service = new PalindromeService();
+        System.out.println("\nChoose Algorithm:");
+        System.out.println("1. Stack Strategy (LIFO)");
+        System.out.println("2. Deque Strategy (Two-End Comparison)");
+        System.out.print("Enter choice: ");
 
-        // Call palindrome check
-        boolean result = service.checkPalindrome(input);
+        int choice = scanner.nextInt();
+
+        PalindromeStrategy strategy;
+
+        if (choice == 1) {
+            strategy = new StackStrategy();
+        } else {
+            strategy = new DequeStrategy();
+        }
+
+        boolean result = strategy.check(input);
 
         if (result) {
-            System.out.println("The string is a PALINDROME.");
+            System.out.println("\nResult: The string is a PALINDROME.");
         } else {
-            System.out.println("The string is NOT a palindrome.");
+            System.out.println("\nResult: The string is NOT a palindrome.");
         }
 
         scanner.close();
     }
 }
 
-class PalindromeService {
-    public boolean checkPalindrome(String input) {
 
-        // Initialize pointers
-        int start = 0;
-        int end = input.length() - 1;
+interface PalindromeStrategy {
 
-        // Compare characters moving inward
-        while (start < end) {
+    boolean check(String input);
 
-            if (input.charAt(start) != input.charAt(end)) {
+}
+
+
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+
+        Stack<Character> stack = new Stack<>();
+
+        // Push characters
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Compare with popped characters
+        for (char c : input.toCharArray()) {
+
+            if (c != stack.pop()) {
                 return false;
             }
+        }
 
-            start++;
-            end--;
+        return true;
+    }
+}
+
+
+class DequeStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (char c : input.toCharArray()) {
+            deque.add(c);
+        }
+
+        while (deque.size() > 1) {
+
+            if (deque.removeFirst() != deque.removeLast()) {
+                return false;
+            }
         }
 
         return true;
